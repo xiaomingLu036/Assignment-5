@@ -3,13 +3,12 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config'),
     listingsRouter = require('../routes/listings.server.routes'), 
     getCoordinates = require('../controllers/coordinates.server.controller.js');
 
 module.exports.init = function() {
-  //connect to database
-  mongoose.connect(config.db.uri);
+  //connect to database from heroku config
+  mongoose.connect(process.env.uri);
 
   //initialize app
   var app = express();
